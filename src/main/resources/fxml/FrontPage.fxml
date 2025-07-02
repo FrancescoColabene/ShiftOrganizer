@@ -1,0 +1,1055 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<?import java.util.ArrayList?>
+<AnchorPane prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FrontController">
+   <children>
+      <MenuBar layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <menus>
+            <Menu mnemonicParsing="false" text="Calendario">
+              <items>
+                  <MenuItem mnemonicParsing="false" onAction="#startScheduling" text="Avvia l'assegnamento automatico" />
+                  <MenuItem mnemonicParsing="false" onAction="#exportCalendar" text="Esporta il calendario" />
+                  <MenuItem mnemonicParsing="false" onAction="#showSummary" text="Mostra il riepilogo" />
+              </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Lavoratori">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#showWorkers" text="Mostra i lavoratori" />
+                  <MenuItem mnemonicParsing="false" onAction="#newWorker" text="Aggiungi un lavoratore" />
+                  <MenuItem mnemonicParsing="false" onAction="#removeWorker" text="Rimuovi un lavoratore" />
+                  <MenuItem mnemonicParsing="false" onAction="#saveChanges" text="Salva i cambiamenti" />
+               </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Aiuto">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#FAQ" text="FAQ" />
+              </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <AnchorPane fx:id="calendarPane" layoutX="20.0" layoutY="31.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="960.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+         <children>
+            <GridPane prefHeight="690.0" prefWidth="960.0" AnchorPane.bottomAnchor="17.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints maxHeight="573.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="573.0" minHeight="10.0" prefHeight="544.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="340.0" minHeight="10.0" prefHeight="156.0" valignment="CENTER" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.valignment="BOTTOM">
+                     <children>
+                        <Text layoutX="87.0" layoutY="12.94921875" strokeType="OUTSIDE" strokeWidth="0.0" text="09:30/15:00" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Text>
+                        <Text layoutX="727.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="15:00/21:00" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Text>
+                        <Text layoutX="326.0" layoutY="12.0" strokeType="OUTSIDE" strokeWidth="0.0" text="15:30/21:30" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Text>
+                        <Text layoutX="890.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="21:30/9:30" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Text>
+                        <Text layoutX="568.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="09:30/15:00" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Text>
+                        <Text layoutX="246.0" layoutY="12.0" strokeType="OUTSIDE" strokeWidth="0.0" text="15:00/21:00" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Text>
+                        <Text layoutX="807.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="15:30/21:30" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Text>
+                        <Text layoutX="409.0" layoutY="12.0" strokeType="OUTSIDE" strokeWidth="0.0" text="21:30/9:30" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Text>
+                        <Text layoutX="167.0" layoutY="12.94921875" strokeType="OUTSIDE" strokeWidth="0.0" text="09:00/15:30" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Text>
+                        <Text layoutX="646.0" layoutY="12.0" strokeType="OUTSIDE" strokeWidth="0.0" text="09:00/15:30" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Text>
+                     </children>
+                  </AnchorPane>
+                  <GridPane gridLinesVisible="true" prefWidth="960.0" GridPane.rowIndex="1">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="1" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets top="-3.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="2" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets top="-3.0" />
+                            </GridPane.margin>
+                        </Text>
+                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="3" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                             <font>
+                                 <Font name="System Bold" size="18.0" />
+                             </font>
+                             <GridPane.margin>
+                                 <Insets top="-3.0" />
+                             </GridPane.margin>
+                         </Text>
+                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="4" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                             <font>
+                                 <Font name="System Bold" size="18.0" />
+                             </font>
+                             <GridPane.margin>
+                                 <Insets top="-3.0" />
+                             </GridPane.margin>
+                         </Text>
+                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="5" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                             <font>
+                                 <Font name="System Bold" size="18.0" />
+                             </font>
+                             <GridPane.margin>
+                                 <Insets top="-3.0" />
+                             </GridPane.margin>
+                         </Text>
+                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="6" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="TOP">
+                             <font>
+                                 <Font name="System Bold" size="18.0" />
+                             </font>
+                             <GridPane.margin>
+                                 <Insets top="-3.0" />
+                             </GridPane.margin>
+                         </Text>
+                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="7" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="TOP">
+                             <font>
+                                 <Font name="System Bold" size="18.0" />
+                             </font>
+                             <GridPane.margin>
+                                 <Insets top="-3.0" />
+                             </GridPane.margin>
+                         </Text>
+                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="8" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="TOP">
+                             <font>
+                                 <Font name="System Bold" size="18.0" />
+                             </font>
+                             <GridPane.margin>
+                                 <Insets top="-3.0" />
+                             </GridPane.margin>
+                         </Text>
+                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="9" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="TOP">
+                             <font>
+                                 <Font name="System Bold" size="18.0" />
+                             </font>
+                             <GridPane.margin>
+                                 <Insets top="-3.0" />
+                             </GridPane.margin>
+                         </Text>
+                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="10" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="TOP">
+                             <font>
+                                 <Font name="System Bold" size="18.0" />
+                             </font>
+                             <GridPane.margin>
+                                 <Insets top="-3.0" />
+                             </GridPane.margin>
+                         </Text>
+                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="11" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="TOP">
+                             <font>
+                                 <Font name="System Bold" size="18.0" />
+                             </font>
+                             <GridPane.margin>
+                                 <Insets top="-3.0" />
+                             </GridPane.margin>
+                         </Text>
+                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="12" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="TOP">
+                             <font>
+                                 <Font name="System Bold" size="18.0" />
+                             </font>
+                             <GridPane.margin>
+                                 <Insets top="-3.0" />
+                             </GridPane.margin>
+                         </Text>
+                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="13" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="12" GridPane.valignment="TOP">
+                             <font>
+                                 <Font name="System Bold" size="18.0" />
+                             </font>
+                             <GridPane.margin>
+                                 <Insets top="-3.0" />
+                             </GridPane.margin>
+                         </Text>
+                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="14" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="13" GridPane.valignment="TOP">
+                             <font>
+                                 <Font name="System Bold" size="18.0" />
+                             </font>
+                             <GridPane.margin>
+                                 <Insets top="-3.0" />
+                             </GridPane.margin>
+                         </Text>
+                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="15" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="14" GridPane.valignment="TOP">
+                             <font>
+                                 <Font name="System Bold" size="18.0" />
+                             </font>
+                             <GridPane.margin>
+                                 <Insets top="-3.0" />
+                             </GridPane.margin>
+                         </Text>
+                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="16" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="15" GridPane.valignment="TOP">
+                             <font>
+                                 <Font name="System Bold" size="18.0" />
+                             </font>
+                             <GridPane.margin>
+                                 <Insets top="-3.0" />
+                             </GridPane.margin>
+                         </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="17" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets top="-3.0" />
+                            </GridPane.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="18" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets top="-3.0" />
+                            </GridPane.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="19" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets top="-3.0" />
+                            </GridPane.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="20" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets top="-3.0" />
+                            </GridPane.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="21" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets top="-3.0" />
+                            </GridPane.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="22" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="TOP">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets top="-3.0" />
+                            </GridPane.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="23" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="TOP">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets top="-3.0" />
+                            </GridPane.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="24" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="TOP">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets top="-3.0" />
+                            </GridPane.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="25" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="TOP">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets top="-3.0" />
+                            </GridPane.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="26" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="TOP">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets top="-3.0" />
+                            </GridPane.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="27" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="TOP">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets top="-3.0" />
+                            </GridPane.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="28" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="TOP">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets top="-3.0" />
+                            </GridPane.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="29" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="12" GridPane.valignment="TOP">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets top="-3.0" />
+                            </GridPane.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="31" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="14" GridPane.valignment="TOP">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets top="-3.0" />
+                            </GridPane.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="30" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="13" GridPane.valignment="TOP">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                            <GridPane.margin>
+                                <Insets top="-3.0" />
+                            </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text1" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text2" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text3" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text16" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.halignment="CENTER" GridPane.rowIndex="15" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text15" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.halignment="CENTER" GridPane.rowIndex="14" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text14" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.halignment="CENTER" GridPane.rowIndex="13" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text13" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.halignment="CENTER" GridPane.rowIndex="12" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text12" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text11" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text10" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text9" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text8" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text7" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text6" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text5" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text4" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text31" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="14" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text30" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="13" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text28" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text29" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="12" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text27" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="10" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text26" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text25" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text24" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text23" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text22" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text21" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text20" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text19" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text18" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                        <Text fx:id="text17" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                           <GridPane.margin>
+                              <Insets bottom="2.0" />
+                           </GridPane.margin>
+                        </Text>
+                         <Text fx:id="text1F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin></Text>
+                         <Text fx:id="text1F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                         <Text fx:id="text1F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
+                         <Text fx:id="text1F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="4" GridPane.halignment="CENTER" />
+                         <Text fx:id="text1F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="5" GridPane.halignment="CENTER" />
+
+                         <Text fx:id="text2F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                         <Text fx:id="text2F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                         <Text fx:id="text2F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                         <Text fx:id="text2F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                         <Text fx:id="text2F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+
+                         <Text fx:id="text3F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                         <Text fx:id="text3F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                         <Text fx:id="text3F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                         <Text fx:id="text3F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                         <Text fx:id="text3F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+
+                         <Text fx:id="text4F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                         <Text fx:id="text4F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                         <Text fx:id="text4F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                         <Text fx:id="text4F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                         <Text fx:id="text4F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+
+                         <Text fx:id="text5F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                         <Text fx:id="text5F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                         <Text fx:id="text5F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                         <Text fx:id="text5F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                         <Text fx:id="text5F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+
+                         <Text fx:id="text6F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                         <Text fx:id="text6F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                         <Text fx:id="text6F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                         <Text fx:id="text6F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                         <Text fx:id="text6F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+
+                         <Text fx:id="text7F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                         <Text fx:id="text7F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                         <Text fx:id="text7F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                         <Text fx:id="text7F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                         <Text fx:id="text7F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+
+                         <Text fx:id="text8F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                         <Text fx:id="text8F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                         <Text fx:id="text8F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                         <Text fx:id="text8F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                         <Text fx:id="text8F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+
+                         <Text fx:id="text9F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+                         <Text fx:id="text9F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+                         <Text fx:id="text9F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+                         <Text fx:id="text9F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+                         <Text fx:id="text9F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+
+                         <Text fx:id="text10F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+                         <Text fx:id="text10F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+                         <Text fx:id="text10F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+                         <Text fx:id="text10F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+                         <Text fx:id="text10F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+
+                         <Text fx:id="text11F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                         <Text fx:id="text11F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                         <Text fx:id="text11F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                         <Text fx:id="text11F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                         <Text fx:id="text11F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+
+                         <Text fx:id="text12F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+                         <Text fx:id="text12F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+                         <Text fx:id="text12F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+                         <Text fx:id="text12F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+                         <Text fx:id="text12F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+
+                         <Text fx:id="text13F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="12" />
+                         <Text fx:id="text13F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="12" />
+                         <Text fx:id="text13F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="12" />
+                         <Text fx:id="text13F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="12" />
+                         <Text fx:id="text13F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="12" />
+
+                         <Text fx:id="text14F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="13" />
+                         <Text fx:id="text14F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="13" />
+                         <Text fx:id="text14F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="13" />
+                         <Text fx:id="text14F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="13" />
+                         <Text fx:id="text14F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="13" />
+
+                         <Text fx:id="text15F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="14" />
+                         <Text fx:id="text15F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="14" />
+                         <Text fx:id="text15F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="14" />
+                         <Text fx:id="text15F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="14" />
+                         <Text fx:id="text15F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="14" />
+
+                         <Text fx:id="text16F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="15" />
+                         <Text fx:id="text16F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="15" />
+                         <Text fx:id="text16F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="15" />
+                         <Text fx:id="text16F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="15" />
+                         <Text fx:id="text16F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="15" />
+
+                         <Text fx:id="text17F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="7" GridPane.halignment="CENTER" />
+                         <Text fx:id="text17F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="8" GridPane.halignment="CENTER" />
+                         <Text fx:id="text17F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="9" GridPane.halignment="CENTER" />
+                         <Text fx:id="text17F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="10" GridPane.halignment="CENTER" />
+                         <Text fx:id="text17F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="11" GridPane.halignment="CENTER" />
+
+                         <Text fx:id="text18F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                         <Text fx:id="text18F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                         <Text fx:id="text18F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                         <Text fx:id="text18F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                         <Text fx:id="text18F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+
+                         <Text fx:id="text19F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                         <Text fx:id="text19F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                         <Text fx:id="text19F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                         <Text fx:id="text19F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                         <Text fx:id="text19F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+
+                         <Text fx:id="text20F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                         <Text fx:id="text20F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                         <Text fx:id="text20F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                         <Text fx:id="text20F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                         <Text fx:id="text20F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+
+                         <Text fx:id="text21F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                         <Text fx:id="text21F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                         <Text fx:id="text21F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                         <Text fx:id="text21F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                         <Text fx:id="text21F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+
+                         <Text fx:id="text22F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                         <Text fx:id="text22F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                         <Text fx:id="text22F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                         <Text fx:id="text22F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                         <Text fx:id="text22F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+
+                         <Text fx:id="text23F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                         <Text fx:id="text23F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                         <Text fx:id="text23F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                         <Text fx:id="text23F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                         <Text fx:id="text23F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+
+                         <Text fx:id="text24F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                         <Text fx:id="text24F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                         <Text fx:id="text24F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                         <Text fx:id="text24F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                         <Text fx:id="text24F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+
+                         <Text fx:id="text25F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+                         <Text fx:id="text25F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+                         <Text fx:id="text25F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+                         <Text fx:id="text25F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+                         <Text fx:id="text25F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+
+                         <Text fx:id="text26F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+                         <Text fx:id="text26F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+                         <Text fx:id="text26F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+                         <Text fx:id="text26F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+                         <Text fx:id="text26F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+
+                         <Text fx:id="text27F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                         <Text fx:id="text27F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                         <Text fx:id="text27F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                         <Text fx:id="text27F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                         <Text fx:id="text27F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+
+                         <Text fx:id="text28F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+                         <Text fx:id="text28F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+                         <Text fx:id="text28F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+                         <Text fx:id="text28F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+                         <Text fx:id="text28F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+
+                         <Text fx:id="text29F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="12" />
+                         <Text fx:id="text29F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="12" />
+                         <Text fx:id="text29F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="12" />
+                         <Text fx:id="text29F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="12" />
+                         <Text fx:id="text29F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="12" />
+
+                         <Text fx:id="text30F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="13" />
+                         <Text fx:id="text30F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="13" />
+                         <Text fx:id="text30F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="13" />
+                         <Text fx:id="text30F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="13" />
+                         <Text fx:id="text30F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="13" />
+
+                         <Text fx:id="text31F1" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="14" />
+                         <Text fx:id="text31F2" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="8" GridPane.halignment="CENTER" GridPane.rowIndex="14" />
+                         <Text fx:id="text31F3" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="9" GridPane.halignment="CENTER" GridPane.rowIndex="14" />
+                         <Text fx:id="text31F4" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="10" GridPane.halignment="CENTER" GridPane.rowIndex="14" />
+                         <Text fx:id="text31F5" onMousePressed="#assignTurn" strokeType="OUTSIDE" strokeWidth="0.0" text="________" GridPane.columnIndex="11" GridPane.halignment="CENTER" GridPane.rowIndex="14" />
+
+                     </children>
+                  </GridPane>
+                  <AnchorPane fx:id="calendarInfo" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="147.0" prefWidth="976.0" GridPane.rowIndex="2">
+                     <children>
+                        <ListView fx:id="workersCal" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="100.0" minWidth="-Infinity" onMousePressed="#showWorkerInfo" prefHeight="150.0" prefWidth="200.0" AnchorPane.topAnchor="10.0" />
+                        <AnchorPane fx:id="workerPanel" layoutX="216.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="750.0" visible="false">
+                           <children>
+                              <GridPane fx:id="gridInfo" layoutY="-8.0" prefHeight="150.0" prefWidth="200.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ore assegnate:">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Text>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ore totali:" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Text>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Turni:" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Text>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ore notturne:" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Text>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lavora di notte:" GridPane.rowIndex="4">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="assignedHours" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                                    <Text fx:id="totalHours" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                                    <Text fx:id="turns" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                                    <Text fx:id="nightHours" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                                    <Text fx:id="doesNightText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="supervisionPanel" layoutX="791.0" layoutY="3.0" minHeight="100.0" prefHeight="150.0" prefWidth="171.0" AnchorPane.topAnchor="4.0">
+                           <children>
+                              <Text fill="#eb1c1c" layoutX="15.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SUPERVISIONE" textAlignment="CENTER" wrappingWidth="138.896484375" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="17.103515625" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="supervisionDate" layoutX="13.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="138.896484375" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="28.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="equipePanel" layoutX="620.0" layoutY="3.0" minHeight="100.0" prefHeight="150.0" prefWidth="171.0" AnchorPane.topAnchor="4.0">
+                           <children>
+                              <Text fill="#eb1c1c" layoutX="15.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EQUIPE" textAlignment="CENTER" wrappingWidth="138.896484375" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="17.103515625" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Text>
+                              <Text fx:id="equipeDate" layoutX="14.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="138.896484375" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="28.0">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="popupWindow" layoutX="400.0" layoutY="204.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#closePopup" prefHeight="160.0" prefWidth="200.0" visible="false">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="160.0" stroke="#e10707" strokeLineCap="ROUND" strokeType="INSIDE" strokeWidth="2.0" width="200.0" />
+            <Text layoutX="20.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Attenzione! Questo è un turno nelle ferie/disponibilità di" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="160.0" AnchorPane.bottomAnchor="51.087890625" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="19.828125" AnchorPane.topAnchor="7.087890625">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="popupText" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="200.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="premi qui per continuare..." textAlignment="CENTER" wrappingWidth="200.0" />
+         </children>
+      </AnchorPane>
+       <fx:define>
+           <ArrayList fx:id="dayNames">
+               <fx:reference source="text1" />
+               <fx:reference source="text2" />
+               <fx:reference source="text3" />
+               <fx:reference source="text4" />
+               <fx:reference source="text5" />
+               <fx:reference source="text6" />
+               <fx:reference source="text7" />
+               <fx:reference source="text8" />
+               <fx:reference source="text9" />
+               <fx:reference source="text10" />
+               <fx:reference source="text11" />
+               <fx:reference source="text12" />
+               <fx:reference source="text13" />
+               <fx:reference source="text14" />
+               <fx:reference source="text15" />
+               <fx:reference source="text16" />
+               <fx:reference source="text17" />
+               <fx:reference source="text18" />
+               <fx:reference source="text19" />
+               <fx:reference source="text20" />
+               <fx:reference source="text21" />
+               <fx:reference source="text22" />
+               <fx:reference source="text23" />
+               <fx:reference source="text24" />
+               <fx:reference source="text25" />
+               <fx:reference source="text26" />
+               <fx:reference source="text27" />
+               <fx:reference source="text28" />
+               <fx:reference source="text29" />
+               <fx:reference source="text30" />
+               <fx:reference source="text31" />
+           </ArrayList>
+       </fx:define>
+        <fx:define>
+            <ArrayList fx:id="matrixTurns">
+                <fx:reference source="text1F1" />
+                <fx:reference source="text1F2" />
+                <fx:reference source="text1F3" />
+                <fx:reference source="text1F4" />
+                <fx:reference source="text1F5" />
+
+                <fx:reference source="text2F1" />
+                <fx:reference source="text2F2" />
+                <fx:reference source="text2F3" />
+                <fx:reference source="text2F4" />
+                <fx:reference source="text2F5" />
+
+                <fx:reference source="text3F1" />
+                <fx:reference source="text3F2" />
+                <fx:reference source="text3F3" />
+                <fx:reference source="text3F4" />
+                <fx:reference source="text3F5" />
+
+                <fx:reference source="text4F1" />
+                <fx:reference source="text4F2" />
+                <fx:reference source="text4F3" />
+                <fx:reference source="text4F4" />
+                <fx:reference source="text4F5" />
+
+                <fx:reference source="text5F1" />
+                <fx:reference source="text5F2" />
+                <fx:reference source="text5F3" />
+                <fx:reference source="text5F4" />
+                <fx:reference source="text5F5" />
+
+                <fx:reference source="text6F1" />
+                <fx:reference source="text6F2" />
+                <fx:reference source="text6F3" />
+                <fx:reference source="text6F4" />
+                <fx:reference source="text6F5" />
+
+                <fx:reference source="text7F1" />
+                <fx:reference source="text7F2" />
+                <fx:reference source="text7F3" />
+                <fx:reference source="text7F4" />
+                <fx:reference source="text7F5" />
+
+                <fx:reference source="text8F1" />
+                <fx:reference source="text8F2" />
+                <fx:reference source="text8F3" />
+                <fx:reference source="text8F4" />
+                <fx:reference source="text8F5" />
+
+                <fx:reference source="text9F1" />
+                <fx:reference source="text9F2" />
+                <fx:reference source="text9F3" />
+                <fx:reference source="text9F4" />
+                <fx:reference source="text9F5" />
+
+                <fx:reference source="text10F1" />
+                <fx:reference source="text10F2" />
+                <fx:reference source="text10F3" />
+                <fx:reference source="text10F4" />
+                <fx:reference source="text10F5" />
+
+                <fx:reference source="text11F1" />
+                <fx:reference source="text11F2" />
+                <fx:reference source="text11F3" />
+                <fx:reference source="text11F4" />
+                <fx:reference source="text11F5" />
+
+                <fx:reference source="text12F1" />
+                <fx:reference source="text12F2" />
+                <fx:reference source="text12F3" />
+                <fx:reference source="text12F4" />
+                <fx:reference source="text12F5" />
+
+                <fx:reference source="text13F1" />
+                <fx:reference source="text13F2" />
+                <fx:reference source="text13F3" />
+                <fx:reference source="text13F4" />
+                <fx:reference source="text13F5" />
+
+                <fx:reference source="text14F1" />
+                <fx:reference source="text14F2" />
+                <fx:reference source="text14F3" />
+                <fx:reference source="text14F4" />
+                <fx:reference source="text14F5" />
+
+                <fx:reference source="text15F1" />
+                <fx:reference source="text15F2" />
+                <fx:reference source="text15F3" />
+                <fx:reference source="text15F4" />
+                <fx:reference source="text15F5" />
+
+                <fx:reference source="text16F1" />
+                <fx:reference source="text16F2" />
+                <fx:reference source="text16F3" />
+                <fx:reference source="text16F4" />
+                <fx:reference source="text16F5" />
+
+                <fx:reference source="text17F1" />
+                <fx:reference source="text17F2" />
+                <fx:reference source="text17F3" />
+                <fx:reference source="text17F4" />
+                <fx:reference source="text17F5" />
+
+                <fx:reference source="text18F1" />
+                <fx:reference source="text18F2" />
+                <fx:reference source="text18F3" />
+                <fx:reference source="text18F4" />
+                <fx:reference source="text18F5" />
+
+                <fx:reference source="text19F1" />
+                <fx:reference source="text19F2" />
+                <fx:reference source="text19F3" />
+                <fx:reference source="text19F4" />
+                <fx:reference source="text19F5" />
+
+                <fx:reference source="text20F1" />
+                <fx:reference source="text20F2" />
+                <fx:reference source="text20F3" />
+                <fx:reference source="text20F4" />
+                <fx:reference source="text20F5" />
+
+                <fx:reference source="text21F1" />
+                <fx:reference source="text21F2" />
+                <fx:reference source="text21F3" />
+                <fx:reference source="text21F4" />
+                <fx:reference source="text21F5" />
+
+                <fx:reference source="text22F1" />
+                <fx:reference source="text22F2" />
+                <fx:reference source="text22F3" />
+                <fx:reference source="text22F4" />
+                <fx:reference source="text22F5" />
+
+                <fx:reference source="text23F1" />
+                <fx:reference source="text23F2" />
+                <fx:reference source="text23F3" />
+                <fx:reference source="text23F4" />
+                <fx:reference source="text23F5" />
+
+                <fx:reference source="text24F1" />
+                <fx:reference source="text24F2" />
+                <fx:reference source="text24F3" />
+                <fx:reference source="text24F4" />
+                <fx:reference source="text24F5" />
+
+                <fx:reference source="text25F1" />
+                <fx:reference source="text25F2" />
+                <fx:reference source="text25F3" />
+                <fx:reference source="text25F4" />
+                <fx:reference source="text25F5" />
+
+                <fx:reference source="text26F1" />
+                <fx:reference source="text26F2" />
+                <fx:reference source="text26F3" />
+                <fx:reference source="text26F4" />
+                <fx:reference source="text26F5" />
+
+                <fx:reference source="text27F1" />
+                <fx:reference source="text27F2" />
+                <fx:reference source="text27F3" />
+                <fx:reference source="text27F4" />
+                <fx:reference source="text27F5" />
+
+                <fx:reference source="text28F1" />
+                <fx:reference source="text28F2" />
+                <fx:reference source="text28F3" />
+                <fx:reference source="text28F4" />
+                <fx:reference source="text28F5" />
+
+                <fx:reference source="text29F1" />
+                <fx:reference source="text29F2" />
+                <fx:reference source="text29F3" />
+                <fx:reference source="text29F4" />
+                <fx:reference source="text29F5" />
+
+                <fx:reference source="text30F1" />
+                <fx:reference source="text30F2" />
+                <fx:reference source="text30F3" />
+                <fx:reference source="text30F4" />
+                <fx:reference source="text30F5" />
+
+                <fx:reference source="text31F1" />
+                <fx:reference source="text31F2" />
+                <fx:reference source="text31F3" />
+                <fx:reference source="text31F4" />
+                <fx:reference source="text31F5" />
+
+            </ArrayList>
+        </fx:define>
+   </children>
+</AnchorPane>

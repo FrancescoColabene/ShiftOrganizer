@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SupervisionController">
+    <children>
+        <Text layoutX="250.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Supervisione" textAlignment="CENTER" wrappingWidth="499.734375">
+            <font>
+                <Font size="32.0" />
+            </font>
+        </Text>
+        <Text fx:id="text1" layoutX="250.0" layoutY="397.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date già assegnate:" textAlignment="CENTER" wrappingWidth="499.734375">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Text>
+        <Button fx:id="confirmationButton" alignment="TOP_CENTER" contentDisplay="BOTTOM" disable="true" layoutX="414.0" layoutY="652.0" mnemonicParsing="false" onAction="#setSupervision" prefHeight="25.0" prefWidth="173.0" text="Conferma" textAlignment="CENTER" />
+        <Text fx:id="text2" layoutX="250.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scegli la data della supervisione; per cancellare un giorno, selezionarlo nuovamente" textAlignment="CENTER" wrappingWidth="499.734375">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Text>
+        <ListView fx:id="supervisionDays" layoutX="400.0" layoutY="409.0" prefHeight="233.0" prefWidth="200.0" />
+        <Text fx:id="popUpText" layoutX="250.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" visible="false" wrappingWidth="500.0">
+            <font>
+                <Font size="26.0" />
+            </font>
+        </Text>
+      <Button fx:id="backButton" layoutX="414.0" layoutY="690.0" mnemonicParsing="false" onAction="#returnToFront" prefHeight="25.0" prefWidth="173.0" text="Salta la supervisione" textAlignment="CENTER" AnchorPane.bottomAnchor="35.0" />
+      <AnchorPane fx:id="selectPane" layoutX="240.0" layoutY="213.0" prefHeight="202.0" prefWidth="520.0">
+         <children>
+            <Text layoutX="96.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Giorno">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Text layoutX="154.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ora">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="38.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fine:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+              <DatePicker fx:id="datePicker" layoutX="289.0" layoutY="18.0" onAction="#showButton" prefHeight="25.0" prefWidth="147.0" />
+            <Text layoutX="29.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inizio:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="312.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="minuti">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="312.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="minuti">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text layoutX="154.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ora">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <ComboBox fx:id="startingH" layoutX="201.0" layoutY="68.0" prefHeight="25.0" prefWidth="79.0" />
+            <ComboBox fx:id="startingM" layoutX="377.0" layoutY="68.0" prefHeight="25.0" prefWidth="79.0" />
+            <ComboBox fx:id="endingH" layoutX="201.0" layoutY="127.0" prefHeight="25.0" prefWidth="79.0" />
+            <ComboBox fx:id="endingM" layoutX="377.0" layoutY="127.0" prefHeight="25.0" prefWidth="79.0" />
+         </children>
+      </AnchorPane>
+      <Text fx:id="textRed" fill="#dd0000" layoutX="251.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NOTA BENE: non è possibile modificare la supervisione successivamente!" textAlignment="CENTER" wrappingWidth="499.734375">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+    </children>
+</AnchorPane>

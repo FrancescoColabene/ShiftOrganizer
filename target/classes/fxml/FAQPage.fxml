@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FAQController">
+   <children>
+      <MenuBar fx:id="menuBar" layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="Calendario">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#showCalendar" text="Mostra il calendario" />
+                  <MenuItem mnemonicParsing="false" onAction="#showSummary" text="Mostra il riepilogo" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Lavoratori">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#showWorkers" text="Mostra i lavoratori" />
+                  <MenuItem mnemonicParsing="false" onAction="#newWorker" text="Aggiungi un lavoratore" />
+                  <MenuItem mnemonicParsing="false" onAction="#removeWorker" text="Rimuovi un lavoratore" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <Text fill="#ee0b0b" layoutX="59.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Benvenuta!">
+         <font>
+            <Font name="System Bold" size="28.0" />
+         </font>
+      </Text>
+      <Text fx:id="mainText" layoutX="59.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="870.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

@@ -1,0 +1,14 @@
+Giornate\WeekDays.class
+Test.class
+Giornate\Bands.class
+Giornate\Months.class
+Main.class
+Exceptions\WrongMonthException.class
+Robe\SortDaysComparator.class
+Robe\Calendario.class
+Robe\Person.class
+Giornate\DayLav.class
+Robe\Calendario$1.class
+Giornate\Day.class
+Robe\Person$1.class
+Robe\DoubleString.class

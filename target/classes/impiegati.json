@@ -1,0 +1,50 @@
+[ {
+  "name" : "Alessia",
+  "surname" : "Colabene",
+  "hours" : 26.0,
+  "code" : 1,
+  "nightHours" : 1.0,
+  "doesNight" : true
+}, {
+  "name" : "Raffaella",
+  "surname" : "Radice",
+  "hours" : 15.0,
+  "code" : 27390,
+  "nightHours" : 0.0,
+  "doesNight" : false
+}, {
+  "name" : "Elisa",
+  "surname" : "Zanin",
+  "hours" : 19.0,
+  "code" : 1337,
+  "nightHours" : 0.0,
+  "doesNight" : false
+}, {
+  "name" : "Lucia",
+  "surname" : "Cherillo",
+  "hours" : 16.0,
+  "code" : 12270,
+  "nightHours" : 6.0,
+  "doesNight" : true
+}, {
+  "name" : "Federica",
+  "surname" : "Negri",
+  "hours" : 30.0,
+  "code" : 71921,
+  "nightHours" : 1.0,
+  "doesNight" : true
+}, {
+  "name" : "Elisa",
+  "surname" : "Colombo",
+  "hours" : 16.0,
+  "code" : 2,
+  "nightHours" : 1.0,
+  "doesNight" : true
+}, {
+  "name" : "Martina",
+  "surname" : "Spina",
+  "hours" : 16.0,
+  "code" : 3,
+  "nightHours" : 1.0,
+  "doesNight" : true
+} ]
