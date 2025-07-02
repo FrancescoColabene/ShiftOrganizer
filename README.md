@@ -12,7 +12,7 @@ Il progetto comprende una serie di funzionalità per la gestione dei turni e del
 - Aggiungere disponibilità (turni in cui un lavoratore non può essere assegnato) e ferie (giorni in cui il lavoratore non può essere assegnato).
 - Impostare manualmente i turni ai lavoratori.
 - Assegnamento dei turni rimasti ai lavoratori in modo automatico, seguendo vincoli prestabiliti.
-- Esportazione della tabella dei turni in immagine in format png.
+- Esportazione della tabella dei turni in immagine in formato png.
 - Schermata di riepilogo con turni e ferie assegnate ai singoli lavoratori.
 - Schermata FAQ con consigli generali sull'utilizzo dell'applicazione.
 
